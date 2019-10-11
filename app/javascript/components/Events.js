@@ -9,7 +9,7 @@ import Event from './events/Event';
 import NewEvent from './events/NewEvent';
 import EditEvent from './events/EditEvent';
 
-export default class Editor extends Component {
+export default class Events extends Component {
   constructor(props) {
     super(props);
 
@@ -38,7 +38,6 @@ export default class Editor extends Component {
     const { match } = this.props;
     // get the event id that was requested through the router (Link)
     const eventId = match.params.id;
-
     //iterate over the events and select the obj with the same ID
     const event = events.find(e => e.id === Number(eventId));
 
@@ -60,5 +59,5 @@ export default class Editor extends Component {
   }
 }
 
-Editor.propTypes = { match: PropTypes.shape() };
-Editor.defaultProps = { match: undefined };
+Events.propTypes = { match: PropTypes.shape() };
+Events.defaultProps = { match: undefined };

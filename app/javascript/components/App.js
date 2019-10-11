@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Editor from './Editor';
+import Events from './Events';
 
 // Stateless function which will contain all relevant routes
 const App = () => (
   // Show Page which passes an ID for the Event object
-  <Route path="/events/:id?" component={Editor} />
+  <Route path="/events/:id?" component={Events} />
 );
 
 export default App;
