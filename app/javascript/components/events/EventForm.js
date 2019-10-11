@@ -15,7 +15,7 @@ export default class EventForm extends React.Component {
   render() {
     return (
       <div>
-        <h2>New Event</h2>
+        <h2>{this.props.title}</h2>
         <form className="eventForm" onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="event_type">

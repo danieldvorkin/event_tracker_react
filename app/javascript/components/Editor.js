@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Header from './Header';
-import EventList from './EventList';
-import PropTypes from 'prop-types';
-import PropsRoute from './PropsRoute';
-import Event from './Event';
 import  { Switch } from 'react-router-dom';
-import EventForm from './EventForm';
+import axios from 'axios';
+import PropTypes from 'prop-types';
+
+import Header from './Header';
+import PropsRoute from './PropsRoute';
+
+import EventList from './events/EventList';
+import Event from './events/Event';
+import EventForm from './events/EventForm';
+import EditEvent from './events/EditEvent';
 
 export default class Editor extends Component {
   constructor(props) {
@@ -14,7 +17,7 @@ export default class Editor extends Component {
 
     // instantiate state with no events
     this.state = {
-      events: null,
+      events: null
     };
   }
 
@@ -37,6 +40,7 @@ export default class Editor extends Component {
     const { match } = this.props;
     // get the event id that was requested through the router (Link)
     const eventId = match.params.id;
+
     //iterate over the events and select the obj with the same ID
     const event = events.find(e => e.id === Number(eventId));
 
@@ -46,7 +50,8 @@ export default class Editor extends Component {
         <div className="grid">
           <EventList events={events} activeId={Number(eventId)} />
           <Switch>
-            <PropsRoute path="/events/new" component={EventForm} />
+            <PropsRoute path="/events/:id/edit" component={EditEvent} title="Edit Event" event={event}/>
+            <PropsRoute path="/events/new" component={EventForm} title="New Event" />
             <PropsRoute path="/events/:id" component={Event} event={event} />
           </Switch>
         </div>
