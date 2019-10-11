@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'responders'
 gem 'webpacker', '>= 4.0.x'
+gem 'turbolinks', '~> 5'
 
 
 group :development, :test do
