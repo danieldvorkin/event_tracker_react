@@ -28,17 +28,17 @@ export default class EventForm extends React.Component {
   }
 
   render() {
+    let fields = ["event_type", "event_date", "title", "speaker", "host", "published"];
+    const list = fields.map((field, index) => {
+      return <li><input type="text" id={field} value={this.state[field]} onChange={this.updateField}/></li>
+    });
+
     return (
       <div className="eventContainer">
         <h2>{`${this.state.event_date} - ${this.state.event_type}`}</h2>
-        <Link to={`/events/${this.props.event.id}`}>go back</Link>
+        <Link to={`/events/${this.state.id}/edit`}>Edit</Link>
         <ul>
-          <li><input type="text" id="event_type" value={this.state.event_type} onChange={this.updateField} /></li>
-          <li><input type="text" id="event_date" value={this.state.event_date} onChange={this.updateField} /></li>
-          <li><input type="text" id="title" value={this.state.title} onChange={this.updateField} /></li>
-          <li><input type="text" id="speaker" value={this.state.speaker} onChange={this.updateField} /></li>
-          <li><input type="text" id="host" value={this.state.host} onChange={this.updateField} /></li>
-          <li><input type="text" id="published" value={this.state.published ? 'yes' : 'no'} onChange={this.updateField} /></li>
+          {list}
         </ul>
         <button type="submit" onClick={this.handleUpdate}>Update</button>
       </div>

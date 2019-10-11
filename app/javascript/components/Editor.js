@@ -8,7 +8,7 @@ import PropsRoute from './PropsRoute';
 
 import EventList from './events/EventList';
 import Event from './events/Event';
-import EventForm from './events/EventForm';
+import NewEvent from './events/NewEvent';
 import EditEvent from './events/EditEvent';
 
 export default class Editor extends Component {
@@ -51,7 +51,7 @@ export default class Editor extends Component {
           <EventList events={events} activeId={Number(eventId)} />
           <Switch>
             <PropsRoute path="/events/:id/edit" component={EditEvent} title="Edit Event" event={event}/>
-            <PropsRoute path="/events/new" component={EventForm} title="New Event" />
+            <PropsRoute path="/events/new" component={NewEvent} title="New Event" />
             <PropsRoute path="/events/:id" component={Event} event={event} />
           </Switch>
         </div>
