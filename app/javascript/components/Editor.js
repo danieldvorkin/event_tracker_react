@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import  { Switch } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
-import Header from './Header';
 import PropsRoute from './PropsRoute';
 
 import EventList from './events/EventList';
@@ -46,7 +44,9 @@ export default class Editor extends Component {
 
     return (
       <>
-        <Header />
+        <header>
+          <h1>Event Manager</h1>
+        </header>
         <div className="grid">
           <EventList events={events} activeId={Number(eventId)} />
           <Switch>
