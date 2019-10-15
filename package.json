@@ -1,6 +1,9 @@
 {
   "name": "event-manager",
   "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.6.3",
     "@rails/webpacker": "^4.0.7",

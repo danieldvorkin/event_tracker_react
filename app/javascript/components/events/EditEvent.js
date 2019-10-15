@@ -36,7 +36,6 @@ export default class EventForm extends React.Component {
     return (
       <div className="eventContainer">
         <h2>{`${this.state.event_date} - ${this.state.event_type}`}</h2>
-        <Link to={`/events/${this.state.id}/edit`}>Edit</Link>
         <ul>
           {list}
         </ul>
