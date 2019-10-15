@@ -1,15 +1,43 @@
 import React from 'react';
+import Pikaday from 'pikaday';
+import 'pikaday/css/pikaday.css';
+import { formatDate, isEmptyObject, validateEvent } from '../../helpers/helpers';
 
 export default class NewEvent extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      event: null
+    }
+    this.dateInput = React.createRef();
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log('submitted');
+  
+  componentDidMount(){
+    new Pikaday({
+      field: this.dateInput.current,
+      onSelect: (date) => {
+        const formattedDate = formatDate(date);
+        this.dateInput.current.value = formattedDate;
+        this.updateEvent('event_date', formattedDate);
+      },
+    });
+  }
+  
+  updateEvent(key, value) {
+    this.setState(prevState => ({
+      event: {
+        ...prevState.event,
+        [key]: value,
+      },
+    }));
+  }
+  
+  handleInputChange(event) {
+    const { target } = event;
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.updateEvent(name, value);
   }
 
   render() {
@@ -26,7 +54,13 @@ export default class NewEvent extends React.Component {
           <div>
             <label htmlFor="event_date">
               <strong>Date:</strong>
-              <input type="text" id="event_date" name="event_date" />
+              <input
+                type="text"
+                id="event_date"
+                name="event_date"
+                ref={this.dateInput}
+                autoComplete="off"
+              />
             </label>
           </div>
           <div>
