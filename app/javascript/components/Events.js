@@ -43,9 +43,6 @@ export default class Events extends Component {
 
     return (
       <>
-        <header>
-          <h1>Event Manager</h1>
-        </header>
         <div className="grid">
           <EventList events={events} activeId={Number(eventId)} />
           <Switch>

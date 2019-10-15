@@ -2,7 +2,7 @@
   "name": "event-manager",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --mode development --hot"
   },
   "dependencies": {
     "@babel/preset-react": "^7.6.3",
