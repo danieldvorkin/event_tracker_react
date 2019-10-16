@@ -1,5 +1,6 @@
 class Api::EventsController < ApplicationController
   respond_to :json
+  protect_from_forgery with: :null_session
 
   def index
     respond_with Event.order(event_date: :DESC)

@@ -1,6 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
+import Moment from 'moment-timezone';
+// shared components imports
+import Datepicker from '../shared/Datepicker';
+import Input from '../shared/Input';
+import TextArea from '../shared/TextArea';
+import { formatDate, isEmptyObject, validateEvent } from '../../helpers/helpers';
+
 
 export default class EventForm extends React.Component {
   constructor(props) {
@@ -21,6 +28,10 @@ export default class EventForm extends React.Component {
   updateField(){
     this.setState({[event.target.id]: event.target.value});
   }
+  
+  updateDateField(name, value){
+    this.setState({[name]: value})
+  }
 
   handleUpdate(e) {
     e.preventDefault();
@@ -35,44 +46,23 @@ export default class EventForm extends React.Component {
     }
   }
   
-  validateEvent(event) {
-    const errors = {};
-
-    if (event.event_type === '') {
-      errors.event_type = 'You must enter an event type';
-    }
-
-    if (event.event_date === '') {
-      errors.event_date = 'You must enter a valid date';
-    }
-
-    if (event.title === '') {
-      errors.title = 'You must enter a title';
-    }
-
-    if (event.speaker === '') {
-      errors.speaker = 'You must enter at least one speaker';
-    }
-
-    if (event.host === '') {
-      errors.host = 'You must enter at least one host';
-    }
-
-    console.log(event);
-    return errors;
-  }
+  
 
   render() {
     let fields = ["event_type", "event_date", "title", "speaker", "host", "published"];
     const list = fields.map((field, index) => {
       return <li><input type="text" id={field} value={this.state[field]} onChange={this.updateField}/></li>
     });
-
+    
     return (
       <div className="eventContainer">
         <h2>{`${this.state.event_date} - ${this.state.event_type}`}</h2>
         <ul>
-          {list}
+          <li>
+            <Input id="event_type" label="Event Type" value={this.state.event_type} onChange={this.updateField} />
+            <Datepicker id="event_date" label="Event Date" value={this.state.event_date} onChange={this.updateField} updateEvent={this.updateDateField}/>
+            <Input id="title" label="Title" value={this.state.title} onChange={this.updateField} />
+          </li>
         </ul>
         <button type="submit" onClick={this.handleUpdate}>Update</button>
       </div>

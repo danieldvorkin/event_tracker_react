@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Moment from 'moment-timezone';
+import 'moment-timezone';
 import Events from './Events';
 
 // Stateless function which will contain all relevant routes
